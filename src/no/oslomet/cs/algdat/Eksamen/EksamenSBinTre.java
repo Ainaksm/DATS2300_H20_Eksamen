@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Eksamen;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class EksamenSBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -83,7 +80,40 @@ public class EksamenSBinTre<T> {
         return antall == 0;
     }
 
+    /*
+    Basert på Programkode 5.2.3 a) i kompendie, slik oppgave 1. ber om.
+     */
     public boolean leggInn(T verdi) {
+
+        Objects.requireNonNull(verdi, "Nullverdier er ulovlig!");
+
+        Node<T> p = rot;    // p starter i roten
+        Node<T> q = null;
+        int cmp = 0;    // hjelpevariabel
+
+        while (p != null) {     // Fortsetter til p er ute av treet
+            q = p;      // q er forelder til p
+            cmp = comp.compare(verdi, p.verdi);     // Bruker komparatoren
+            p = cmp < 0 ? p.venstre : p.høyre;      // Flytter p
+        }
+
+        // p er nå null, dvs. ute av treet, q er den siste vi passerte
+
+        p = new Node<>(verdi, TreeSet.);      // Oppretter ny node
+
+        if (q == null) {
+            rot = p;        // p bilr rotnode
+        }
+        else if (cmp < 0) {
+            q.venstre = p;      // venstre barn til q
+        }
+        else {
+            q.høyre = p;        // høyre barn til q
+        }
+
+        antall++;       // én verdi mer i treet
+        return true;        // vellykket innlegging
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
