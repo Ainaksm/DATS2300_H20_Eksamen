@@ -99,7 +99,7 @@ public class EksamenSBinTre<T> {
 
         // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<>(verdi, TreeSet.);      // Oppretter ny node
+        p = new Node<>(verdi, q);      // Oppretter ny node
 
         if (q == null) {
             rot = p;        // p bilr rotnode
@@ -114,7 +114,6 @@ public class EksamenSBinTre<T> {
         antall++;       // én verdi mer i treet
         return true;        // vellykket innlegging
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public boolean fjern(T verdi) {
