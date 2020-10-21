@@ -125,6 +125,22 @@ public class EksamenSBinTre<T> {
     }
 
     public int antall(T verdi) {
+
+        // Verdi er ikke i treet
+        if (verdi == null) {
+            return 0;
+        }
+
+        int antall = 0;
+
+        Node<T> p = rot;    // p starter i roten
+
+        while (p != null) {
+
+        }
+
+
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
