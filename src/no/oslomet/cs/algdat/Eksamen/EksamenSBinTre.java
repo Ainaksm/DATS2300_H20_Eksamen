@@ -187,7 +187,14 @@ public class EksamenSBinTre<T> {
 
     public int fjernAlle(T verdi) {
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        int teller = 0;
+
+        while (fjern(verdi)) {
+            teller++;
+        }
+
+        return teller;
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public int antall(T verdi) {
