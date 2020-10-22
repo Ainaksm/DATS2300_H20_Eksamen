@@ -161,10 +161,35 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        //p = rot;
+        while (true) {
+            if (p.venstre != null) {
+                p = p.venstre;
+            }
+            else if (p.høyre != null) {
+                p = p.høyre;
+            }
+            else {
+                return p;
+            }
+        }
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
+
+        // Hvis p ikke har en forelder (p er rotnoden), så er p den siste i postorden
+
+        // Hvis p er høyre barn til sin forelder f, er forlederen f den neste.
+
+        // Hvis p er venstre barn til sin forelder f
+
+            //Hvis p er enebarn (f.høyre er null), er forelderen f den neste
+
+            //Hvis p ikker er enebarn (dvs. f.høyre er ikke null),
+            // så er den neste den noden som kommer først i postorden i subtreet med f.høyre som rot
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
