@@ -141,11 +141,12 @@ public class EksamenSBinTre<T> {
             if (cmp < 0) {
                 p = p.venstre;      // går til venstre
             }
+            else if (cmp > 0) {
+                p = p.høyre;        // går til høyre
+            }
             else {
-                if (cmp == 0) {
-                    antall++;
-                    p = p.høyre;
-                }
+                antall++;
+                p = p.høyre;
             }
 
         }
