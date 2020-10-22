@@ -116,11 +116,77 @@ public class EksamenSBinTre<T> {
 
     }
 
+    /*
+    Basert på Programkode 5.2.8 fra kompendie, slik oppgave 6 forelår
+     */
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        if (verdi == null) {        // Treet har ingen null verdier
+            return false;
+        }
+
+        // q skal være forelder til p
+        Node<T> p = rot;
+        Node<T> q = null;
+
+        while (p != null) {     // leter etter verdi
+            int cmp = comp.compare(verdi, p.verdi);     // sammenlikner
+            if (cmp < 0) {
+                q = p;
+                p = p.venstre;      // går til venstre
+            }
+            else if (cmp > 0) {
+                q = p;
+                p = p.høyre;        // går til høyre
+            }
+            else {
+                break;      // den søkte verdien ligger i p
+            }
+        }
+
+        if (p == null) {
+            return false;       // finner ikke verdi
+        }
+
+
+        if (p.venstre == null || p.høyre == null) {     // Tilfelle 1) og 2)
+            Node<T> b = p.venstre != null ? p.venstre : p.høyre;        // b for barn
+            if (p == rot) {
+                rot = b;
+            }
+            else if (p == q.venstre) {
+                q.venstre = b;
+            }
+            else {
+                q.høyre = b;
+            }
+        }
+        else {      // Tilfelle 3)
+            Node<T> s = p;
+            Node<T> r = p.høyre;        // finner neste i inorden
+
+            while (r.venstre != null) {
+                s = r;      // s er forelder til r
+                r = r.venstre;
+            }
+
+            p.verdi = r.verdi;      // kopierer verdien i r til p
+
+            if (s != p) {
+                s.venstre = r.høyre;
+            }
+            else {
+                s.høyre = r.høyre;
+            }
+        }
+
+        antall--;
+        return true;
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public int fjernAlle(T verdi) {
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
