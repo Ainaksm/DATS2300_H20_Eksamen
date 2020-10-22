@@ -131,17 +131,28 @@ public class EksamenSBinTre<T> {
             return 0;
         }
 
-        int antall = 0;
+        int antall = 0;     // Oppstartsverdi
 
         Node<T> p = rot;    // p starter i roten
 
         while (p != null) {
 
+            int cmp = comp.compare(verdi, p.verdi);
+            if (cmp < 0) {
+                p = p.venstre;      // går til venstre
+            }
+            else {
+                if (cmp == 0) {
+                    antall++;
+                    p = p.høyre;
+                }
+            }
+
         }
 
+        return antall;
 
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void nullstill() {
