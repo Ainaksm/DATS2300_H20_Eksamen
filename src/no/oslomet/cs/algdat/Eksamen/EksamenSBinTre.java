@@ -120,6 +120,9 @@ public class EksamenSBinTre<T> {
     Basert på Programkode 5.2.8 fra kompendie, slik oppgave 6 forelår
      */
     public boolean fjern(T verdi) {
+        /*
+        Gjør de endringene som trengs for at pekeren forelder får korrekt verdi i alle noder etter en fjerning.
+         */
 
         if (verdi == null) {        // Treet har ingen null verdier
             return false;
@@ -153,12 +156,24 @@ public class EksamenSBinTre<T> {
             Node<T> b = p.venstre != null ? p.venstre : p.høyre;        // b for barn
             if (p == rot) {
                 rot = b;
+
+                if (b != null) {
+                    b.forelder = null;
+                }
             }
             else if (p == q.venstre) {
                 q.venstre = b;
+
+                if (b != null) {
+                    b.forelder = q;
+                }
             }
             else {
                 q.høyre = b;
+
+                if (b != null) {
+                    b.forelder = q;
+                }
             }
         }
         else {      // Tilfelle 3)
@@ -174,18 +189,32 @@ public class EksamenSBinTre<T> {
 
             if (s != p) {
                 s.venstre = r.høyre;
+
+                if (r.høyre != null) {
+                    r.høyre.forelder = s;
+                }
             }
             else {
                 s.høyre = r.høyre;
+
+                if (r.høyre != null) {
+                    r.høyre.forelder = s;
+                }
             }
         }
 
-        antall--;
+        antall--;       // Det er nå én node mindre i treet
         return true;
         //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public int fjernAlle(T verdi) {
+        /*
+        Den skal fjerne alle forekomstene av verdi i treet.
+        Husk at duplikater er tillatt. Dermed kan en og samme verdi ligge flere steder i treet.
+        Metoden skal returnere antallet som ble fjernet.
+        Hvis treet er tomt, skal 0 returneres.
+         */
 
         int teller = 0;
 
@@ -230,6 +259,11 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
+        /*
+        Den skal traversere (rekursivt eller iterativt) treet i en eller annen rekkefølge
+        og sørge for at samtlige pekere og nodeverdier i treet blir nullet.
+        Det er med andre ord ikke tilstrekkelig å sette rot til null og antall til 0.
+         */
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
