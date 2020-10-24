@@ -292,7 +292,7 @@ public class EksamenSBinTre<T> {
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
 
-        //p = rot;
+
         while (true) {
             if (p.venstre != null) {
                 p = p.venstre;
@@ -304,23 +304,36 @@ public class EksamenSBinTre<T> {
                 return p;
             }
         }
-        //throw new UnsupportedOperationException("Ikke kodet ennå!");
+
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
 
-        // Hvis p ikke har en forelder (p er rotnoden), så er p den siste i postorden
+        Node<T> f = p.forelder;   // f skal være forelder til p
 
-        // Hvis p er høyre barn til sin forelder f, er forlederen f den neste.
+        // Hvis p ikke har en forelder (p er rotnoden), så er p den siste i postorden. Skal returenre null.
+        if (f == null) {
+            return null;
+        }
 
-        // Hvis p er venstre barn til sin forelder f
+        if (f.høyre == null || p == f.høyre) {
+            p = f;
+        }
+        else {
+            p = f.høyre;
+            while (true) {
+                if (p.venstre != null) {
+                    p = p.venstre;
+                }
+                else if (p.høyre != null) {
+                    p = p.høyre;
+                }
+                else break;
+            }
+        }
 
-            //Hvis p er enebarn (f.høyre er null), er forelderen f den neste
+        return p;
 
-            //Hvis p ikker er enebarn (dvs. f.høyre er ikke null),
-            // så er den neste den noden som kommer først i postorden i subtreet med f.høyre som rot
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
