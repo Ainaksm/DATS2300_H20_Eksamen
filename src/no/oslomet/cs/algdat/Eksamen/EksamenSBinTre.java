@@ -337,7 +337,40 @@ public class EksamenSBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        // treet er tomt
+        if (tom()) {
+            return;
+        }
+
+        Node<T> p = rot;
+
+        // finner den første noden i postoden
+        while (true) {
+            if (p.venstre != null) {
+                p = p.venstre;
+            }
+            else if (p.høyre != null) {
+                p = p.høyre;
+            }
+            else {
+                break;
+            }
+        }
+
+        // bruker nestePostoden fra oppg. 3, til å finne
+        while (true) {
+            if (p == rot) {
+                p = null;
+                break;
+            }
+            else {
+                p = førstePostorden(p);
+            }
+        }
+
+
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
