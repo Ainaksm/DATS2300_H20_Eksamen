@@ -290,8 +290,10 @@ public class EksamenSBinTre<T> {
         // nuller verdien
     }
 
+    /*
+    Basert på Programkode 5.1.7 h).
+     */
     private static <T> Node<T> førstePostorden(Node<T> p) {
-
 
         while (true) {
             if (p.venstre != null) {
@@ -358,15 +360,19 @@ public class EksamenSBinTre<T> {
             }
         }
 
-        // bruker nestePostoden fra oppg. 3, til å finne
+        oppgave.utførOppgave(p.verdi);
+
+        // bruker nestePostoden fra oppg. 3, til å traversere treet
         while (true) {
             if (p == rot) {
                 p = null;
                 break;
             }
             else {
-                p = førstePostorden(p);
+                p = nestePostorden(p);
             }
+
+            oppgave.utførOppgave(p.verdi);
         }
 
 
