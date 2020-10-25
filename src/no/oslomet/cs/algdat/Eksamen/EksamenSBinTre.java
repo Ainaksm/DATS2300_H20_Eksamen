@@ -255,7 +255,6 @@ public class EksamenSBinTre<T> {
 
         return antall;
 
-        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void nullstill() {
@@ -311,16 +310,19 @@ public class EksamenSBinTre<T> {
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
 
-        Node<T> f = p.forelder;   // f skal være forelder til p
+        Node<T> f = p.forelder;   // f er forelder til p
 
         // Hvis p ikke har en forelder (p er rotnoden), så er p den siste i postorden. Skal returenre null.
         if (f == null) {
             return null;
         }
 
+        // Hvis p er enebarn eller p er høyrebarn til sin forelder f, er forelderen f den neste.
         if (f.høyre == null || p == f.høyre) {
             p = f;
         }
+        // hvis p ikke er enebarn,
+        // så er den neste den noden som kommer først i postoden i subtreet med f.høyre som rot.
         else {
             p = f.høyre;
             while (true) {
@@ -375,8 +377,6 @@ public class EksamenSBinTre<T> {
             oppgave.utførOppgave(p.verdi);
         }
 
-
-        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -394,7 +394,7 @@ public class EksamenSBinTre<T> {
         }
 
         oppgave.utførOppgave(p.verdi);
-        //throw new UnsupportedOperationException("Ikke kodet ennå!");
+
     }
 
     public ArrayList<T> serialize() {
