@@ -404,25 +404,26 @@ public class EksamenSBinTre<T> {
 
     public ArrayList<T> serialize() {
 
-        ArrayDeque<Node<T>> queue = new ArrayDeque<>();
+        ArrayList<T> liste = new ArrayList<>();
 
         // Legger til rotnoden
-        queue.addLast(rot);
+        liste.add(rot.verdi);
 
-        while (!queue.isEmpty()) {
+        while (!liste.isEmpty()) {
             // Ta ut første fra køen
-            Node<T> current = queue.removeFirst();
+            Node<T> current = liste.remove();
 
             // Legg til currents to barn
             if (current.venstre != null) {
-                queue.addLast(current.venstre);
+                liste.add(current.venstre.verdi);
             }
             if (current.høyre != null) {
-                queue.addLast(current.høyre);
+                liste.add(current.høyre.verdi);
             }
 
         }
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        return liste;
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
