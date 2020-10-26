@@ -398,6 +398,25 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
+
+        ArrayDeque<Node<T>> queue = new ArrayDeque<>();
+
+        // Legger til rotnoden
+        queue.addLast(rot);
+
+        while (!queue.isEmpty()) {
+            // Ta ut første fra køen
+            Node<T> current = queue.removeFirst();
+
+            // Legg til currents to barn
+            if (current.venstre != null) {
+                queue.addLast(current.venstre);
+            }
+            if (current.høyre != null) {
+                queue.addLast(current.høyre);
+            }
+
+        }
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
