@@ -366,15 +366,16 @@ public class EksamenSBinTre<T> {
 
         // bruker nestePostoden fra oppg. 3, til å traversere treet
         while (true) {
-            if (p == rot) {
-                p = null;
-                break;
-            }
-            else {
+            if (p != null) {
                 p = nestePostorden(p);
             }
+            else {
+                break;
+            }
 
-            oppgave.utførOppgave(p.verdi);
+            if (p != null) {
+                oppgave.utførOppgave(p.verdi);
+            }
         }
 
     }
