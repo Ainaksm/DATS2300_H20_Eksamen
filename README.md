@@ -40,7 +40,11 @@ For å gå gjennom resten av treet bruker jeg en while-løkke metoden _nestePost
 Utøfer oppgave til slutt i løkka, slik at det blir riktig for traversering av postoden.
 I _postordenRecursive(Node<T> p, Oppgave<? super T> oppgave)_ går rekrustivt til venstre og høre. 
 Som nevnt, er det viktig at utførelsen av oppgaven kommer til slutt i postorden.
-* Oppgave 5:
+* Oppgave 5: I _serialize()_ begynner jeg med å opprette en liste og sjekker om lista er tom.
+Oppretter deretter en kø og legger til rotnoden sist i køen.
+Bruker en whileløkke til å traversere så lange køen ikke er tom. Legger treets høyre og venstre barn bak i køen. Til slutt i løkka legges verdien inn i Array lista.
+Så returneres lista i nivå orden. 
+_deserialize(ArrayList<K> data, Comparator<? super K> c)_
 * Oppgave 6: _fjern(T verdi)_ er basert på Programkode 5.2.8 fra kompendie, slik oppgave 6 forelår.
 Sjekker først at treet ikke har nullverdier.
 Søker gjennom treet slik som i oppave 1, og returnerer _false_ om verdien ikke finnes i treet.

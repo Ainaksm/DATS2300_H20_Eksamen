@@ -420,12 +420,11 @@ public class EksamenSBinTre<T> {
                 deque.addLast(current.høyre);
             }
 
+            // Legger currents verdi inn i lista
+            liste.add(current.verdi);
         }
 
-
-
         return liste;
-        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     /*
