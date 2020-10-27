@@ -428,16 +428,16 @@ public class EksamenSBinTre<T> {
     }
 
     /*
-    Deserialize skal da ta dette arrayet,
-    og legge inn alle verdiene (igjen i nivå orden),
-    og dermed gjenskape treet.
+    Basert på Programkode 5.2.3 c) fra kompendiet
      */
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
 
-        // Ta array fra serialize()
+        EksamenSBinTre<K> tre = new EksamenSBinTre<>(c);        // Komparatoren c
 
-        // legge inn i tre i nivå orden
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        data.forEach(tre :: leggInn);       // bygger opp treet
+
+        return tre;
+
     }
 
 
