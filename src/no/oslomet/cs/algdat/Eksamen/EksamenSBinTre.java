@@ -186,17 +186,13 @@ public class EksamenSBinTre<T> {
 
             if (s != p) {
                 s.venstre = r.høyre;
-
-                if (r.høyre != null) {
-                    r.høyre.forelder = s;
-                }
             }
             else {
                 s.høyre = r.høyre;
+            }
 
-                if (r.høyre != null) {
-                    r.høyre.forelder = s;
-                }
+            if (r.høyre != null) {
+                r.høyre.forelder = s;
             }
         }
 
@@ -392,31 +388,56 @@ public class EksamenSBinTre<T> {
 
     }
 
+    /*
+    Selve metoden serialize skal være iterativ og må bruke en kø til å traversere treet i nivå orden.
+    Arrayet som returneres av serialize skal inneholde verdiene i alle nodene i nivå orden.
+     */
     public ArrayList<T> serialize() {
 
+        // Lager liste
         ArrayList<T> liste = new ArrayList<>();
 
-        // Legger til rotnoden
-        liste.add(rot.verdi);
+        // tom liste
+        if (rot == null) {
+            return liste;
+        }
 
-        while (!liste.isEmpty()) {
+        // Lager kø
+        ArrayDeque<Node<T>> deque = new ArrayDeque<>();
+
+        // Legger til rotnoden
+        deque.addLast(rot);
+
+        while (!deque.isEmpty()) {
             // Ta ut første fra køen
-            Node<T> current = liste.remove();
+            Node<T> current = deque.removeFirst();
 
             // Legg til currents to barn
             if (current.venstre != null) {
-                liste.add(current.venstre.verdi);
+                deque.addLast(current.venstre);
             }
             if (current.høyre != null) {
-                liste.add(current.høyre.verdi);
+                deque.addLast(current.høyre);
             }
 
         }
+
+
+
         return liste;
         //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
+    /*
+    Deserialize skal da ta dette arrayet,
+    og legge inn alle verdiene (igjen i nivå orden),
+    og dermed gjenskape treet.
+     */
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
+
+        // Ta array fra serialize()
+
+        // legge inn i tre i nivå orden
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
