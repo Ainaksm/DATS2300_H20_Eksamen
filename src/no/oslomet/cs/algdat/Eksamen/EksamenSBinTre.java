@@ -99,10 +99,10 @@ public class EksamenSBinTre<T> {
 
         // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<>(verdi, q);      // Oppretter ny node
+        p = new Node<>(verdi, q);      // Oppretter ny node hvor q er forelder
 
         if (q == null) {
-            rot = p;        // p bilr rotnode
+            rot = p;        // p bilr rotnode siden forelderen er null.
         }
         else if (cmp < 0) {
             q.venstre = p;      // venstre barn til q
@@ -149,7 +149,8 @@ public class EksamenSBinTre<T> {
         }
 
 
-        if (p.venstre == null || p.høyre == null) {     // Tilfelle 1) og 2)
+        // Tilfelle 1) p har ingen barn og 2) p har nøyaktig ett barn
+        if (p.venstre == null || p.høyre == null) {
             Node<T> b = p.venstre != null ? p.venstre : p.høyre;        // b for barn
             if (p == rot) {
                 rot = b;
@@ -173,7 +174,8 @@ public class EksamenSBinTre<T> {
                 }
             }
         }
-        else {      // Tilfelle 3)
+        // Tilfelle 3) p har to barn
+        else {
             Node<T> s = p;
             Node<T> r = p.høyre;        // finner neste i inorden
 
@@ -205,8 +207,9 @@ public class EksamenSBinTre<T> {
 
         int teller = 0;
 
+        // Looper gjennom så lenge verdien eksisterer i treet
         while (fjern(verdi)) {
-            teller++;
+            teller++;       // teller antallet fjernet
         }
 
         return teller;
@@ -262,22 +265,17 @@ public class EksamenSBinTre<T> {
 
         // går mot venstre
         if (p.venstre != null) {
-            // går rekursivt gjennom venstre subtre
-            nullstillRekursivt(p.venstre);
-            // setter perker til null
-            p.venstre = null;
+            nullstillRekursivt(p.venstre);      // går rekursivt gjennom venstre subtre
+            p.venstre = null;       // setter perker til null
         }
 
         // går mot høyre
         if (p.høyre != null) {
-            // går rekursivt gjennom høyre subtre
-            nullstillRekursivt(p.høyre);
-            // setter peker til null
-            p.høyre = null;
+            nullstillRekursivt(p.høyre);        // går rekursivt gjennom høyre subtre
+            p.høyre = null;         // setter peker til null
         }
 
-        // nuller verdien
-        p.verdi = null;
+        p.verdi = null;         // nuller verdien
     }
 
     /*
@@ -285,6 +283,7 @@ public class EksamenSBinTre<T> {
      */
     private static <T> Node<T> førstePostorden(Node<T> p) {
 
+        // Finner bladnoden som ligger langst til venstre i treet
         while (true) {
             if (p.venstre != null) {
                 p = p.venstre;
@@ -376,22 +375,21 @@ public class EksamenSBinTre<T> {
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
 
+        // Går rekursivt til venstre
         if (p.venstre != null) {
             postordenRecursive(p.venstre, oppgave);
         }
 
+        // Går rekursivt til høyre
         if (p.høyre != null) {
             postordenRecursive(p.høyre, oppgave);
         }
 
+        // Utfører oppgave
         oppgave.utførOppgave(p.verdi);
 
     }
 
-    /*
-    Selve metoden serialize skal være iterativ og må bruke en kø til å traversere treet i nivå orden.
-    Arrayet som returneres av serialize skal inneholde verdiene i alle nodene i nivå orden.
-     */
     public ArrayList<T> serialize() {
 
         // Lager liste
@@ -425,6 +423,7 @@ public class EksamenSBinTre<T> {
         }
 
         return liste;
+
     }
 
     /*
